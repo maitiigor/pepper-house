@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import SideBar from '../layout/AppLayOut';
 import usefetchAllMenu from '../hooks/useFetchAllUserHook';
 import {useFetchUsersQuery} from '../features/userSlice'
+import { useFetchAllUserQuery } from '../features/users/apiUserSlice';
 
 function User() {
   const [count, setCount] = useState(0);
@@ -14,13 +15,13 @@ function User() {
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
   //const [userList, isLoading, isError] = usefetchAllMenu();
   
-  const { data = [] , error, isLoading } = useFetchUsersQuery(5)
+  const {
+    data: users ,
+    isLoading,
+    isError
+  } = useFetchAllUserQuery(1);
   
 
-  setTimeout(() => {
-    console.log(error);
-    
-  }, 200);
   const customStyles = {
     content: {
       top: "40%",
@@ -51,7 +52,7 @@ function User() {
 
   return (
     <>
-     <div className="w-full">
+    
       <div className="grid grid-cols-3 gap-2 text-left">
         <div className="col-span-3 gap-0 text-right">
           <button
@@ -103,11 +104,11 @@ function User() {
           </tr>
         </thead>
 
-        { !isLoading && data.length != 0 ? (
-          data.map((el, i) => (
+        { !isLoading && users?.data.length != 0 ? (
+          users?.data.map((el, i) => (
             <tr>
               <td className="border px-8 py-4">{i + 1}</td>
-              <td className="border px-8 py-4">{el.full_name}</td>
+              <td className="border px-8 py-4">{el.first_name + el.last_name}</td>
               <td className="border px-8 py-4">{el.email}</td>
               <td className="border px-8 py-4">{el.address}</td>
               <td className="border px-8 py-4">{el.phone_number}</td>
@@ -244,7 +245,6 @@ function User() {
           </div>
         </form>
       </Modal>
-    </div>
     </>
   )
 }
