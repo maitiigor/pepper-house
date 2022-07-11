@@ -79,8 +79,8 @@ function User() {
           ) : (
             ""
           )}
-
-      <table className=" w-full border border-t-2 border-collapse border-slate-500 mt-3 shadow-lg table-striped bg-white">
+      <div className='w-full overflow-x-auto py-5'>
+      <table className="border border-t-2 border-collapse border-slate-500 mt-3 shadow-lg table-striped bg-white">
         <thead>
           <tr>
             <th className="bg-blue-100 border text-left px-8 py-4">S/N</th>
@@ -136,6 +136,8 @@ function User() {
           ))
         ) : ""}
       </table>
+      </div>
+
       {!isLoading && users?.data ? <Pagination currentPage={currentPage} setCurrentPage={setcurrentPage} total_pages={users?.total_pages ? parseInt(users?.total_pages) : 0}/> : ""}
       
 

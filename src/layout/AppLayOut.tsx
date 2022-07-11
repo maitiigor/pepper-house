@@ -126,7 +126,7 @@ function AppLayOut({children,title}:MainPage) {
           </li>
         </ul>
       </div>
-      <div className="w-screen p-8 overflow-auto h-screen" id="maincontent">
+      <div className="w-full p-8 overflow-x-auto h-screen" id="maincontent">
         <div className="grid grid-cols-3 gap-2 text-left">
           <a href="#" className={`px-2 lg:hidden md:visible z-30 w-8 ${openNavBar ? "bg-yellow-200" : ""}`} onClick={() => toggleBar()}>
            { openNavBar ? <FontAwesomeIcon icon={faClose} color="green" size="2x" />: <FontAwesomeIcon icon={faBars} color="red" size="2x" />}
