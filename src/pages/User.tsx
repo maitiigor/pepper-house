@@ -7,6 +7,7 @@ import SideBar from '../layout/AppLayOut';
 import usefetchAllMenu from '../hooks/useFetchAllUserHook';
 import {useFetchUsersQuery} from '../features/userSlice'
 import { useFetchAllUserQuery } from '../features/users/apiUserSlice';
+import Pagination from '../components/Pagination';
 
 function User() {
   const [count, setCount] = useState(0);
@@ -15,11 +16,12 @@ function User() {
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
   //const [userList, isLoading, isError] = usefetchAllMenu();
   
+  const [currentPage, setcurrentPage] = useState(1)
   const {
     data: users ,
     isLoading,
     isError
-  } = useFetchAllUserQuery(1);
+  } = useFetchAllUserQuery(currentPage);
   
 
   const customStyles = {
@@ -134,6 +136,7 @@ function User() {
           ))
         ) : ""}
       </table>
+      {!isLoading && users?.data ? <Pagination currentPage={currentPage} setCurrentPage={setcurrentPage} total_pages={users?.total_pages ? parseInt(users?.total_pages) : 0}/> : ""}
       
 
       <Modal
