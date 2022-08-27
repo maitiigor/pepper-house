@@ -20,7 +20,7 @@ const PendingOrder: FC<orderlistProps> = ({ orders, isLoading,}: orderlistProps)
     return el.is_fufilled == false;
   }); */
   //const [orderList, setorderList] = useState(orders);
-  const [orderDetails, setorderDetails] = useState<orderProps>();
+  const [orderDetails, setorderDetails] = useState<IOrder>();
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
   const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
   const [orderData, setorderData] = useState<Array<IOrder>>(orders ? orders : []);
@@ -34,14 +34,16 @@ const PendingOrder: FC<orderlistProps> = ({ orders, isLoading,}: orderlistProps)
   }, [orders])
   
 
- /*  const showOrderModal = (id: string) => {
-    const singleOrder = orders.find((el) => {
+  const showOrderModal = (id: string) => {
+    const singleOrder = orderData.find((el) => {
       return el.id == id;
     });
+    console.log();
+    
     setorderDetails(singleOrder);
     setIsAlertOpen(true);
   };
- */
+
   const searchField = (e: React.ChangeEvent<HTMLInputElement>) => {
   
     if(e.target.value == ""){
@@ -55,6 +57,13 @@ const PendingOrder: FC<orderlistProps> = ({ orders, isLoading,}: orderlistProps)
     }
   
     
+  }
+
+  const formatDate = (dateString : string) => {
+        let date = new Date(dateString)
+        
+        return `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()} ${date.toTimeString()}` 
+        
   }
 /* 
   const getUserFullname = (user_id : string) : string => {
@@ -89,7 +98,7 @@ const PendingOrder: FC<orderlistProps> = ({ orders, isLoading,}: orderlistProps)
     <div className="flex justify-end pr-4 pt-2">
        <label className="py-2 px-4 text-lg text-red-500 font-bold" htmlFor="">Search</label><input type="text" className="h-10 rounded-md border-2 px-2 shadow-md border-gray-400 focus:border-red-500" onChange={ (e) => searchField(e) } />
     </div>
-    <div className="flex justify-end pr-4 pt-2 overflow-x-">
+    <div className="w-full max-h-full overflow-auto py-5">
     <table className="w-full border border-t-2 border-collapse border-slate-500 mt-3 shadow-lg table-striped bg-white text-center">
         <thead>
           <tr>
@@ -129,11 +138,11 @@ const PendingOrder: FC<orderlistProps> = ({ orders, isLoading,}: orderlistProps)
               <td className="border px-2 py-2">{el.total_amount}</td>
               <td className="border px-2 py-2">{el.payment_reference}</td>
               <td className="border px-2 py-2">
-                {el.created_at}
+                {formatDate(el.created_at)}
               </td>
               <td className="border px-2 py-2">
                 {" "}
-                <a href="#" /* onClick={() => showOrderModal(el.id)} */>
+                <a href="#" onClick={() => showOrderModal(el.id)}>
                   {" "}
                   <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>{" "}
                 </a>{" "}
@@ -168,11 +177,11 @@ const PendingOrder: FC<orderlistProps> = ({ orders, isLoading,}: orderlistProps)
                 <b>Order Id:</b> {orderDetails?.id}
               </div>
               <div className="py-2">
-                <b>User name:</b> {orderDetails?.user_id.full_name}
+                <b>User name:</b> {orderDetails?.user.first_name}
               </div>
               <div className="py-2">
                 <b>Order at : </b>
-                {orderDetails?.created_at.toDate().toDateString() +" "+ orderDetails?.created_at.toDate().toTimeString()}
+                { orderDetails ? formatDate(orderDetails.created_at) : ""}
               </div>
               <div className="py-2">
                 <b>Payment Refrence:</b> {orderDetails?.payment_reference}
@@ -181,7 +190,7 @@ const PendingOrder: FC<orderlistProps> = ({ orders, isLoading,}: orderlistProps)
                 <b>Description : </b>
                 {orderDetails?.order_details.map((el) => (
                   <>
-                    {el.menu_name +
+                    {el.menu_id +
                       " " +
                       el.price +
                       " x " +

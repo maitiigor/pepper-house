@@ -61,7 +61,7 @@ function AppLayOut({children,title}:MainPage) {
       </a> */}
       {/*  <div className="fixed pl-3 pt-2 z-30"> */}
       <div ref={sideBarRef}
-        className={`h-screen px-1 w-60 absolute -left-full lg:relative lg:left-0 bg-red-600 lg:w-60 text-white overflow-hidden`}
+        className={`h-screen px-1 w-60 absolute -left-full lg:relative lg:left-0 bg-red-600 lg:w-20 hover:w-60 text-white overflow-hidden`}
       >
         <div>
           <img src={logo} alt="" className="rounded-br-3xl rounded-bl-3xl" />
@@ -74,7 +74,7 @@ function AppLayOut({children,title}:MainPage) {
               className="font-bold  text-xl flex items-center my-2 py-5 w-full pl-3 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
             >
               <FontAwesomeIcon
-                className={`py-2 px-4`}
+                className={`py-2 px-2`}
                 icon={faHome}
                 size="2x"
                 color="yellow"
@@ -88,7 +88,7 @@ function AppLayOut({children,title}:MainPage) {
               className="font-bold  text-xl flex items-center my-2 py-4 w-full pl-3 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
             >
               <FontAwesomeIcon
-                className={`py-2 px-6`}
+                className={`py-2 px-3`}
                 icon={faUtensils}
                 size="2x"
                 color="yellow"
@@ -102,7 +102,7 @@ function AppLayOut({children,title}:MainPage) {
               className="font-bold  text-xl flex items-center my-2 py-4 w-full pl-3 h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
             >
               <FontAwesomeIcon
-                className={`py-2 px-4`}
+                className={`py-2 px-2`}
                 icon={faUsers}
                 size="2x"
                 color="yellow"
@@ -116,7 +116,7 @@ function AppLayOut({children,title}:MainPage) {
               className="font-bold  text-xl flex items-center my-2 py-4 pl-4 w-full h-12 overflow-hidden text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out"
             >
               <FontAwesomeIcon
-                className={`py-2 px-4`}
+                className={`py-2 px-2`}
                 icon={faShoppingCart}
                 size="2x"
                 color="yellow"

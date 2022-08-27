@@ -25,6 +25,7 @@ module.exports = {
     },
   },
   variants: {
+    width: ['hover','focus','responsive'],
     extend: {
       backgroundColor: ['even','odd'],
     },

@@ -47,13 +47,11 @@ function Login() {
       login(formData).unwrap()
       .then((payload) => {
         setLogining(false);
-        console.log(payload.token)
-        sessionStorage.setItem('Auth Token', payload.token)
         dispatch(showMessage({isSuccess: true,message: ['Login successful redirecting to dashboard']}));
         setisVisible(true);
         setTimeout(() => {
           navigate("/dashboard");
-        }, 3000);
+        }, 5000);
         
       })
       .catch((error) =>{

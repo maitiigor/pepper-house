@@ -23,7 +23,7 @@ interface IUser{
     updated_at: string
 }
 
-interface IResultPagination{
+export interface IResultPagination{
   data: Array<IUser>
   total_pages: string,
   current_page: string,

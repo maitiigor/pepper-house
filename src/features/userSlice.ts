@@ -5,14 +5,18 @@ import UserDataService from '../services/userservice'
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 
 export interface IUser{
-    id: string,
-    email: string,
-    first_name: string,
-    full_name: string,
-    address: string,
-    phone_number: string,
-    created_at: Date
-    updated_at: Date
+  id: string
+  email: string
+  first_name: string
+  last_name: string
+  middle_name: string
+  address: string
+  phone_number: string
+  profile_image_url: string
+  is_disabled: boolean
+  disabling_user_id: string
+  created_at: string
+  updated_at: string
 }
 
 /* export interface UserState {
